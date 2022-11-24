@@ -31,18 +31,6 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, userInfo);
     
   };
-  // const updateUser = (name) =>{
-  //   updateProfile(auth.currentUser, {
-  //     displayName: name, 
-  //   }).then(() => {
-  //     // Profile updated!
-  //     // ...
-  //   }).catch((error) => {
-  //     // An error occurred
-  //     // ...
-  //   });
-    
-  // };
 
   const logOut = () =>{
     setLoading(true);
