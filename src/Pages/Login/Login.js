@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from "../../context/AuthProvider";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
@@ -19,9 +20,11 @@ const Login = () => {
     const password = form.password.value;
 
     login(email, password)
-    .then(result=>{
-      const user =result.user;
-      console.log(user);
+    .then(()=>{
+      navigate('/');
+      toast('You are logged in Successfully');
+      // const user =result.user;
+      // console.log(user);
     })
     .then(error=>console.log(error));
   };
