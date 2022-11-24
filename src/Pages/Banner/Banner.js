@@ -8,8 +8,8 @@ import image6 from "../../Assets/images/banner/b6.jpg";
 
 const Banner = () => {
   return (
-    <div className="flex justify-center">
-      <div className="carousel  w-2/3">
+    <div className="flex justify-center mt-8">
+      <div className="carousel  w-2/3 h-1/2">
         <div id="slide1" className="carousel-item relative w-full">
           <img src={image1} alt="" className="w-full" />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

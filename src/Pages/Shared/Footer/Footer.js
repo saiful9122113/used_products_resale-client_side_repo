@@ -3,7 +3,7 @@ import image from '../../../Assets/images/phoneIcon.png'
 
 const Footer = () => {
   return (
-    <footer className="footer mt-10 p-10 bg-neutral px-32 text-neutral-content">
+    <footer className="footer mt-12 p-10 bg-neutral px-32 text-neutral-content">
       <div>
         <img className="w-2/5 -ml-12" src={image} alt="" />
         <p>
