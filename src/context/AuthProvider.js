@@ -17,7 +17,14 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if(auth.currentUser) {
+        setCurrentUser(auth.currentUser)
+    }
+}, [auth.currentUser])
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -50,7 +57,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // console.log("user observing");
+      console.log("user observing");
       setUser(currentUser);
       setLoading(false);
     });
@@ -62,6 +69,8 @@ const AuthProvider = ({ children }) => {
     googleSignIn,
     login,
     user,
+    setUser,
+    currentUser,
     logOut,
     updateUser,
     loading,

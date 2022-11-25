@@ -1,10 +1,10 @@
 import React from "react";
-import image1 from "../../Assets/images/banner/b1.jpg";
-import image2 from "../../Assets/images/banner/b2.jpg";
-import image3 from "../../Assets/images/banner/b3.jpg";
-import image4 from "../../Assets/images/banner/b4.jpg";
-import image5 from "../../Assets/images/banner/b5.jpg";
-import image6 from "../../Assets/images/banner/b6.jpg";
+import image1 from "../../../Assets/images/banner/b1.jpg";
+import image2 from "../../../Assets/images/banner/b2.jpg";
+import image3 from "../../../Assets/images/banner/b3.jpg";
+import image4 from "../../../Assets/images/banner/b4.jpg";
+import image5 from "../../../Assets/images/banner/b5.jpg";
+import image6 from "../../../Assets/images/banner/b6.jpg";
 
 const Banner = () => {
   return (
