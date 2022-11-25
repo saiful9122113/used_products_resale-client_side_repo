@@ -11,6 +11,7 @@ const AddProduct = () => {
   const handleAddProduct = (event) => {
     event.preventDefault();
     const form = event.target;
+    const email = form.email.value;
     const productName = form.productName.value;
     const productOriginalPrice = form.productOriginalPrice.value;
     const productResalePrice = form.productResalePrice.value;
@@ -36,6 +37,7 @@ const AddProduct = () => {
           console.log(imgData.data.url);
 
           const productInfo = {
+            email,
             productName,
             productOriginalPrice,
             productResalePrice,
@@ -85,6 +87,18 @@ const AddProduct = () => {
         </h1>
       </div>
       <form onSubmit={handleAddProduct} className="card-body mx-auto w-2/3">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Your Email</span>
+          </label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Your Email"
+            className="input input-bordered"
+            required
+          />
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Product Name</span>

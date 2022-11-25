@@ -1,38 +1,62 @@
-import React, { useContext } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
 
 const Signup = () => {
-    const {createUser,updateUser} = useContext(AuthContext);
-    const navigate = useNavigate();
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [selectedRole, setSelectedRole] = useState("User");
+  const navigate = useNavigate();
 
-    const handleSignup = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
+  const handleSignup = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const role = selectedRole;
 
-        createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user); 
+    const roleInfo = {
+      role,
+      name,
+      email,
+      password,
+    };
+    fetch("http://localhost:5000/user-role", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(roleInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((er) => console.error(er));
 
-            const userInfo = {
-              displayName: name
-            }
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
 
-            updateUser(userInfo)
-            .then(()=>{
-              navigate('/');
-              toast('User Created Successfully');
-            })
-            .catch(err=>console.log(err));
+        const userInfo = {
+          displayName: name,
+        };
 
-        })
-        .catch(err=>console.error(err));
-      };
+        updateUser(userInfo)
+          .then(() => {
+            navigate("/");
+            toast("User Created Successfully");
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const handleRole = (e) => {
+    setSelectedRole(e.target.value);
+  };
 
   return (
     <div className="hero bg-gray-700">
@@ -40,6 +64,19 @@ const Signup = () => {
         <h1 className="text-4xl font-bold">Sign Up</h1>
         <div className="card px-10 sm:w-full md:w-3/4 lg:w-3/4 mb-6 shadow-2xl bg-base-100">
           <form onSubmit={handleSignup} className="card-body">
+            <div>
+              <label className="label">
+                <span className="label-text">Set Your Role</span>
+              </label>
+              <select
+                defaultValue={"User"}
+                className="select select-bordered w-full"
+                onChange={handleRole}
+              >
+                <option value={"User"}>User</option>
+                <option value={"Seller"}>Seller</option>
+              </select>
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -77,7 +114,11 @@ const Signup = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Sign Up" />
+              <input
+                className="btn btn-primary"
+                type="submit"
+                value="Sign Up"
+              />
             </div>
           </form>
           <p className="text-center">
