@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
+import BookingModal from "../../BookingModal/BookingModal";
 import MyProductCard from "../../MyProductCard/MyProductCard";
 import Loading from "../../Shared/Loading/Loading";
 
 const Android = () => {
   const { user, loading, setLoading } = useContext(AuthContext);
   const [categoryData, setCategoryData] = useState([]);
+  const [ product, setProduct] = useState(null);
+
   useEffect(() => {
-    setLoading(true);
     if (!user.email) return;
     fetch("http://localhost:5000/product/Android", {
       method: "GET",
@@ -17,15 +19,10 @@ const Android = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false);
         setCategoryData(data);
       });
   }, [user.email]);
 
-  if(loading){
-    return <Loading></Loading>
-  };
-  
   return (
     <div>
       <div>
@@ -36,9 +33,16 @@ const Android = () => {
             categoryData.map(product=><MyProductCard
             key={product._id}
             product={product}
+            setProduct={setProduct}
             ></MyProductCard>)
         }
       </div>
+      {
+        product &&
+        <BookingModal
+        product={product}
+      ></BookingModal>
+      }
     </div>
   );
 };
