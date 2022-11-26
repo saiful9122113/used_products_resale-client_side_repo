@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
 import MyProductCard from "../../MyProductCard/MyProductCard";
 
-const Android = () => {
+const Button = () => {
   const { user } = useContext(AuthContext);
-  const [categoryData, setCategoryData] = useState([]);
+  const [categoryDat, setCategoryDat] = useState([]);
   useEffect(() => {
     if (!user.email) return;
-    fetch("http://localhost:5000/product/Android", {
+    fetch("http://localhost:5000/product/Button", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -15,17 +15,17 @@ const Android = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCategoryData(data);
+        setCategoryDat(data);
       });
   }, [user.email]);
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold text-center">Android</h1>
+        <h1 className="text-3xl font-bold text-center">Button</h1>
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-20 mt-6">
         {
-            categoryData.map(product=><MyProductCard
+            categoryDat.map(product=><MyProductCard
             key={product._id}
             product={product}
             ></MyProductCard>)
@@ -35,4 +35,4 @@ const Android = () => {
   );
 };
 
-export default Android;
+export default Button;
