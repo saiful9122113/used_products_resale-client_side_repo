@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import MyProductCard from "../MyProductCard/MyProductCard";
+import Loading from "../Shared/Loading/Loading";
 
 const MyProduct = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading, setLoading } = useContext(AuthContext);
   const [myProducts, setMyProducts] = useState([]);
   useEffect(() => {
+    setLoading(true);
     if (!user.email) return;
     fetch(`http://localhost:5000/products/${user.email}`, {
       method: "GET",
@@ -15,10 +17,14 @@ const MyProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setLoading(false);
         setMyProducts(data);
       });
   }, [user.email]);
+
+  if(loading){
+    return <Loading></Loading>
+  }
 
   return (
     <div>

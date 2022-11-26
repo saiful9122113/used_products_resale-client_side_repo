@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
 import MyProductCard from "../../MyProductCard/MyProductCard";
+import Loading from "../../Shared/Loading/Loading";
 
 const Button = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading, setLoading } = useContext(AuthContext);
   const [categoryDat, setCategoryDat] = useState([]);
   useEffect(() => {
     if (!user.email) return;
@@ -18,6 +19,7 @@ const Button = () => {
         setCategoryDat(data);
       });
   }, [user.email]);
+
   return (
     <div>
       <div>
