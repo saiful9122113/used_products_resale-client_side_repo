@@ -10,6 +10,7 @@ import Category from "../Pages/Home/Categories/Category";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import MyProduct from "../Pages/MyProduct/MyProduct";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import Signup from "../Pages/Signup/Signup";
 
 const router = createBrowserRouter([
@@ -47,15 +48,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/1',
-                element: <Android></Android>
+                element: <PrivateRoute><Android></Android></PrivateRoute>
             },
             {
                 path: '/category/2',
-                element: <Landline></Landline>
+                element: <PrivateRoute><Landline></Landline></PrivateRoute>
             },
             {
                 path: '/category/3',
-                element: <Button></Button>
+                element: <PrivateRoute><Button></Button></PrivateRoute>
             },
             
         ]
