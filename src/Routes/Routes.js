@@ -4,6 +4,7 @@ import AddProduct from "../Pages/AddProduct/AddProduct";
 import Blogs from "../Pages/Blog/Blog";
 import Android from "../Pages/CategoryData/Android/Android";
 import Button from "../Pages/CategoryData/Button/Button";
+import Landline from "../Pages/CategoryData/Landline/Landline";
 import Category from "../Pages/Home/Categories/Category";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: '/category/1',
                 element: <Android></Android>
+            },
+            {
+                path: '/category/2',
+                element: <Landline></Landline>
             },
             {
                 path: '/category/3',
