@@ -33,8 +33,30 @@ const Login = () => {
     googleSignIn()
         .then(result=>{
             const user = result.user;
+            // console.log(user.email);
             setError('')
             navigate(from,{replace:true})
+            const name = user.displayName;
+            const email = user.email;
+            const role = "User";
+            
+            const roleInfo = {
+              role,
+              name,
+              email,
+            };
+            fetch("http://localhost:5000/user-role", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(roleInfo),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+              })
+              .catch((er) => console.error(er));
         })
         .catch((error)=>{
             console.log(error);

@@ -61,6 +61,7 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((data) => {
               alert("Product added successfully");
+              form.reset();
             })
             .catch((er) => console.error(er));
         }
