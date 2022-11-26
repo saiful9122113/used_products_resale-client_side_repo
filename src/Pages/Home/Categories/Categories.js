@@ -11,7 +11,8 @@ const Categories = () => {
 
     return (
         <div>
-            <h1 className='font-bold text-center mt-10 mb-6 text-3xl'>Categories</h1>
+            <h1 className='font-bold text-center mt-12 text-3xl'>Categories</h1>
+            <p className='text-center mb-6'>Click in category to see categoriewise data</p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {
                 categories.map((category, index)=><Category

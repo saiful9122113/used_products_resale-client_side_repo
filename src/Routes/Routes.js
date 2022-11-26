@@ -5,6 +5,7 @@ import Blogs from "../Pages/Blog/Blog";
 import Android from "../Pages/CategoryData/Android/Android";
 import Button from "../Pages/CategoryData/Button/Button";
 import Landline from "../Pages/CategoryData/Landline/Landline";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Category from "../Pages/Home/Categories/Category";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -58,7 +59,12 @@ const router = createBrowserRouter([
             },
             
         ]
-    }
+    },
+    {
+        path: "/*",
+        element: <ErrorPage></ErrorPage>
+    },
+
 ])
 
 
